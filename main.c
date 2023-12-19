@@ -30,10 +30,12 @@ void view() {
     if(!fp){
         printf("\n Unable to open : %s ", data);
     }
+    
     char line[20];
     char arr[4][20] = {"Name: ", " Date: ", " Location: ", " Duration: "};
     int i = 0;
-    fgets(line, 100, fp);
+    
+    //fgets(line, 100, fp);
     while(fgets(line, 100, fp)){
         char *ptr = line;
         int i = 0;
@@ -48,13 +50,10 @@ void view() {
             ptr++;
         }
     }
-    //while(fgets(line, 100, fp)){
-        //printf("%*s %s", 20, arr[i++], line);
-    //}
     fclose(fp);
 }
 
-void delete() {
+int delete() {
     FILE *fileptr1, *fileptr2;
     char filename[20] = "data.txt";
     char ch;
@@ -95,14 +94,6 @@ void delete() {
     remove(filename);
     //rename the file replica.c to original name
     rename("replica.c", filename);
-    printf("\n The contents of file after being modified are as follows:\n");
-    fileptr1 = fopen(filename, "r");
-    ch = getc(fileptr1);
-    while (ch != EOF)
-    {
-        printf("%c", ch);
-        ch = getc(fileptr1);
-    }
     fclose(fileptr1);
 }
 
